@@ -1,0 +1,78 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Ledgers</strong></h1>
+</nav>
+<main class="content">
+    <div class="row p-3 bg-white">
+      <div class="row">
+        <div class="col-md-7">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Group</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Town</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-5 text-end">
+          <button type="button" class="btn btn-sm btn-primary rounded-circle" style="align-items: end;"
+          routerLink="/accounting/ledger"><i class="fa fa-search"></i></button>
+        <button type="button" class="btn btn-sm btn-danger rounded-circle ms-1" style="align-items: end;"
+          routerLink="/accounting/ledger"><i class="fa fa-refresh"></i></button>
+        <button type="button" class="btn btn-sm btn-success rounded-circle ms-1" style="align-items: end;"
+          routerLink="/accounting/ledger"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-sm btn-success rounded-circle ms-1" style="align-items: end;"
+          routerLink="/accounting/ledger"><i class="fa fa-file-excel-o"></i></button>
+        </div>
+      </div>
+
+      <div class="row mt-2 p-3 bg-white">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5">
+            <thead>
+              <tr>
+                <th style="width:100px;">Action</th>
+                <th>No</th>
+                <th>Group</th>
+                <th>Name</th>
+                <th>Opening Balance</th>
+                <th>Closing Balance</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="table-white">
+              <tr *ngFor="let ledger of ledgers, let i = index">
+                <td>
+                  <button class="btn btn-sm btn-success" (click)="(ledgers.id)"><i class="fa fa-edit"></i></button>
+                  <button class="btn btn-sm btn-danger ms-2" (click)="(ledgers.id)"><i class="fa fa-trash"></i></button>
+                </td>
+                <td>{{i + 1}}</td>
+                <td></td>
+                <td>{{ledger.name}}</td>
+                <td>{{ledger.openingbalance}}</td>
+                <td>{{ledger.closingbalance}}</td>
+                <td><button type="button" class="btn btn-success">Refresh Balance</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+
+</main>

@@ -1,0 +1,180 @@
+<nav class="navbar navbar-light bg-light m-2">
+  <h1 class="h2 ps-1 page-title"><strong>Sale</strong></h1>
+  <div>
+    <button class="btn btn-success"><i class="fa fa-cloud-upload"></i><span class="ms-2">Publish Sale
+        Vouchers</span></button>
+    <button class="btn btn-primary ms-4">From Delivery Notes</button>
+    <button class="btn btn-danger ms-4"><i class="fa fa-bus"></i><span class="ms-2">E-Way Bill</span></button>
+  </div>
+</nav>
+
+<main class="content">
+  <div class="row p-3 bg-white">
+    <form>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Date<span class="text-danger">*</span></label>
+          <div class="input-group">
+            <input class="form-control mat-datepicker" readonly matInput [matDatepicker]="picker"
+              placeholder="dd/mm/yyyy">
+            <div class="input-group-append">
+              <mat-datepicker-toggle class="mat-datepicker-icon" matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label class="form-label">Customer<span class="text-danger">*</span></label>
+          <div class="row">
+            <div class="col-md-10">
+              <select class="form-select">
+                <option selected value="0">Select</option>
+              </select>
+            </div>
+            <div class="col-md-2 mt-1 p-0">
+              <button class="btn btn-sm btn-secondary"><i class="fa fa-refresh"></i></button>
+              <button class="btn btn-sm btn-secondary ms-1"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Reference No<span class="text-danger">*</span></label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </form>
+
+    <div class="col-md-12 mt-4">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th style="width: 20%;">Product</th>
+              <th style="width: 10%;">Lot/Batch No</th>
+              <th style="width: 10%;">Mfg Date</th>
+              <th style="width: 10%;">Exp Date</th>
+              <th style="width: 10%;">Quantity</th>
+              <th style="width: 10%;">Rate(With GST)</th>
+              <th style="width: 10%;">Disc. %</th>
+              <th style="width: 10%;">Disc. Amount</th>
+              <th style="width: 10%;">Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let field of fieldArray; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td><select class="form-select ">
+                  <option selected value="0">Select</option>
+                  <option value="0"></option>
+                </select></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><input class="form-control" type="text"></td>
+              <td><input class="form-control" type="text"></td>
+              <td><input class="form-control" type="text"></td>
+              <td><input class="form-control" type="text">
+              </td>
+              <td><input class="form-control" type="text"></td>
+              <td>
+                <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)"><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="btn btn-success" type="button" (click)="addFieldValue(1)"><i class="fa fa-plus"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5">
+            <thead>
+              <tr>
+                <th></th>
+                <th>GST Percent</th>
+                <th>Charges</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Discount</td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+              </tr>
+              <tr>
+                <td>TCS</td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+              </tr>
+              <tr>
+                <td>Transportation</td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+                <td><input type="text" class="form-control text-end" value="0.00"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-bordered table-hover border-dark shadow-lg p-3 mb-5">
+            <tbody>
+              <tr>
+                <td>Total Taxable Amount</td>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <td>CGST Amount</td>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <td>SGST Amount</td>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <td>IGST Amount</td>
+                <td class="text-end">0.00</td>
+              </tr>
+              <tr>
+                <td>Round off
+                  <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round">
+              <span class="Yes">Yes</span>
+              <span class="No">No</span>
+            </span>
+          </label>
+                </td>
+                <td><input type="text" class="form-control text-end" value="0.00" /></td>
+              </tr>
+              <tr>
+                <td>Grand Total</td>
+                <td class="text-end">0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <a class="btn btn-danger ms-2" routerLink="/admin/businesses">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
